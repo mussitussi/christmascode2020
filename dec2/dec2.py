@@ -6,8 +6,9 @@ def dec2(xs) -> int:
     '''
     nvalid = 0
     for x in xs:
-        (n1, _, n2), (lett, _), password = x.split()
-        if int(n1) <= password.count(lett) <= int(n2):
+        limits, (lett, _), password = x.split()
+        n1, n2 = (int(n) for n in limits.split('-'))
+        if n1 <= password.count(lett) <= n2:
             nvalid += 1
 
     return nvalid
@@ -18,6 +19,12 @@ if __name__ == '__main__':
           '1-3 b: cdefg',
           '2-9 c: ccccccccc']
 
-    r = dec2(xs)
-    print(xs)
-    print(r)
+    r_part1_sample = dec2(xs)
+    # print(xs)
+    print(r_part1_sample)
+
+    with open('./dec2-input.txt') as f:
+        ys = [line.strip() for line in f]
+
+    r_part1 = dec2(ys)
+    print(r_part1)
