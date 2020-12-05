@@ -16,3 +16,8 @@ if __name__ == '__main__':
     xs = [1721, 979, 366, 299, 675, 1456]
     r = dec1(xs)
     print(r)
+    with open('./dec1-input.txt') as f:
+        ys = [int(l.strip()) for l in f]
+
+    r2 = dec1(ys)
+    print(r2)
