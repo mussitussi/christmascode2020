@@ -62,9 +62,9 @@ def readlines(fname):
 
 
 if __name__ == '__main__':
-    print(f'{row("BFFFBBFRRR")=}')
-    print(f'{row("FFFBBBFRRR")=}')
-    print(f'{row("BBFFBBFRLL")=}')
+    print(f'{row("BFFFBBFRRR") = }')
+    print(f'{row("FFFBBBFRRR") = }')
+    print(f'{row("BBFFBBFRLL") = }')
 
     lines = readlines('./puzze-input.txt')
-    print(f'{solve(lines)=}')
+    print(f'{solve(lines) = }')
