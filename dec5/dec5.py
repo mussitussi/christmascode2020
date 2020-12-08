@@ -19,14 +19,14 @@ def nextlowup(low, up, takelow):
         return low + m, up
 
 
-def col(seatid):
+def col(seatnu):
     '''
     >>> col('BFFFBBFRRR')
     7
     >>> col('BBFFBBFRLL')
     4
     '''
-    ys = seatid[-3:]
+    ys = seatnu[-3:]
     up, low = 0, 7
     for y in ys:
         up, low = nextlowup(up, low, y == 'L')
@@ -35,14 +35,14 @@ def col(seatid):
     return up
 
 
-def row(seatid):
+def row(seatnu):
     '''
     >>> row('BFFFBBFRRR')
     70
     >>> row('FFFBBBFRRR')
     14
     '''
-    ys = seatid[:7]
+    ys = seatnu[:7]
     up, low = 0, 127
     for y in ys:
         up, low = nextlowup(up, low, y == 'F')
@@ -51,9 +51,19 @@ def row(seatid):
     return up
 
 
+def seatid(seatnu):
+    return row(seatnu) * 8 + col(seatnu)
+
+
 def solve(lines):
-    return max(8 * row(seatid) +  col(seatid)
-               for seatid in lines)
+    return max(seatid(seatnu) for seatnu in lines)
+
+
+def solve_part2(lines):
+    seatids = sorted([seatid(x) for x in lines])
+    possibleids = [s1 + 1 for s1, s2 in zip(seatids, seatids[1:])
+                   if s2 - s1 == 2]
+    return possibleids
 
 
 def readlines(fname):
@@ -68,3 +78,5 @@ if __name__ == '__main__':
 
     lines = readlines('./puzze-input.txt')
     print(f'{solve(lines) = }')
+
+    print(f'{solve_part2(lines)=}')
