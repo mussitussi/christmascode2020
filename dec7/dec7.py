@@ -1,25 +1,6 @@
 from typing import Dict, List, Set, Tuple, Union
 
 
-# def parse_r(r: str) -> Union[None, Tuple[int, str]]:
-#     '''
-#     >>> parse_r('1 bright white bag')
-#     (1, 'bright white')
-#     >>> parse_r('2 muted yellow bags')
-#     (2, 'muted yellow')
-#     >>> parse_r('no other bags.') is None
-#     True
-#     '''
-#     xs = r.strip()
-#     if not xs[0].isnumeric():
-#         return None
-
-#     number, color1, color2, *_ = xs.split()
-#     count = int(number)
-#     bagtype = color1 + ' ' + color2
-#     return (count, bagtype)
-
-
 def parse_innerbag(r: str) -> Union[None, str]:
     '''
     >>> parse_innerbag('1 bright white bag')
