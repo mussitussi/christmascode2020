@@ -3,6 +3,7 @@ from typing import List, Set
 
 Op = namedtuple('Op', ['number', 'move'])
 
+
 def parse(line) -> Op:
     '''
     >>> parse('nop +0')
@@ -16,14 +17,14 @@ def parse(line) -> Op:
     '''
     op, n = line.split()
     number = int(n)
-    if op  == 'nop':
+    if op == 'nop':
         return Op(0, 1)
-    elif op  == 'acc':
+    elif op == 'acc':
         return Op(number, 1)
-    elif op  == 'jmp':
+    elif op == 'jmp':
         return Op(0, number)
     else:
-        raise ValueError(f'operation {op=}') 
+        raise ValueError(f'operation {op=}')
 
 
 class Runner:
@@ -40,13 +41,11 @@ class Runner:
         self._current_line = 0
 
     def run(self):
-        next_line = self._current_line
+        self.clear()
         while True:
             if self._current_line in self._visited_lines:
-                # print(f'line already visited: {next_line=}')
                 break
-            if  not (0 <= self._current_line < self._max_line_number):
-                # print('out of bounds', f'{next_line=}')
+            if not (0 <= self._current_line < self._max_line_number):
                 break
 
             self._visited_lines.add(self._current_line)
@@ -56,15 +55,11 @@ class Runner:
             self._acc += op.number
             self._current_line += op.move
 
-        return self.accumulated
-
-    @property
-    def accumulated(self) -> int:
         return self._acc
 
 
 if __name__ == '__main__':
-    sample='''nop +0
+    sample = '''nop +0
 acc +1
 jmp +4
 acc +3
