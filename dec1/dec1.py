@@ -18,7 +18,7 @@ def dec1_2(xs):
 def dec1_2_order_n(xs: Iterable[int], t: int):
     '''
     O(N) version instead of naive O(N2), using a dictionary
-    which has O(1) lookup time to resure checks
+    which has O(1) lookup time to reuse checks
     "rewrite" sum rule:
     xi + xj = t, i /= j <=>
     xi = t - xj, i /=j
